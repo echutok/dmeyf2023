@@ -7,7 +7,7 @@ require("rpart")
 PARAM <- list()
 
 # reemplazar por SU semilla
-PARAM$semilla <- 102191
+PARAM$semilla <- 108961
 
 #------------------------------------------------------------------------------
 # particionar agrega una columna llamada fold a un dataset
@@ -35,10 +35,10 @@ particionar <- function(
 
 # Aqui se debe poner la carpeta de la computadora local
 # Establezco el Working Directory
-setwd("X:\\gdrive\\uba2023\\")
+setwd("C:\\Users\\Digodat\\OneDrive - Económicas - UBA\\Documentos\\Maestría Exactas\\EyF")
 
 # cargo los datos
-dataset <- fread("./datasets/competencia_01.csv")
+dataset <- fread("./datasets/competencia_01_new.csv")
 
 # trabajo solo con los datos con clase, es decir 202103
 dataset <- dataset[ foto_mes==202103 ]
@@ -73,14 +73,14 @@ prediccion <- predict(modelo, # el modelo que genere recien
 ) # type= "prob"  es que devuelva la probabilidad
 
 # prediccion es una matriz con TRES columnas,
-#  llamadas "BAJA+1", "BAJA+2"  y "CONTINUA"
+# llamadas "BAJA+1", "BAJA+2"  y "CONTINUA"
 # cada columna es el vector de probabilidades
 
 # agrego una columna que es la de las ganancias
-dataset[, ganancia := ifelse(clase_ternaria == "BAJA+2", 273000, -7000)]
+dataset[, ganancia := ifelse(clase_ternaria == "baja t+2", 273000, -7000)]
 
 # para testing agrego la probabilidad
-dataset[fold == 2, prob_baja2 := prediccion[, "BAJA+2"]]
+dataset[fold == 2, prob_baja2 := prediccion[, "baja t+2"]]
 
 # calculo la ganancia en testing  qu es fold==2
 ganancia_test <- dataset[fold == 2 & prob_baja2 > 0.025, sum(ganancia)]
@@ -89,13 +89,14 @@ ganancia_test <- dataset[fold == 2 & prob_baja2 > 0.025, sum(ganancia)]
 ganancia_test_normalizada <- ganancia_test / 0.3
 
 estimulos <- dataset[fold == 2 & prob_baja2 > 0.025, .N]
-aciertos <- dataset[fold == 2 & prob_baja2 > 0.025 & clase_ternaria == "BAJA+2", .N]
+aciertos <- dataset[fold == 2 & prob_baja2 > 0.025 & clase_ternaria == "baja t+2", .N]
 
 
 cat("Testing total: ", dataset[fold == 2, .N], "\n")
-cat("Testing BAJA+2: ", dataset[fold == 2 & clase_ternaria == "BAJA+2", .N], "\n")
+cat("Testing BAJA+2: ", dataset[fold == 2 & clase_ternaria == "baja t+2", .N], "\n")
 
 cat("Estimulos: ", estimulos, "\n")
 cat("Aciertos (BAJA+2): ", aciertos, "\n")
 
 cat("Ganancia en testing (normalizada): ", ganancia_test_normalizada, "\n")
+

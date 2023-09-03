@@ -7,7 +7,7 @@ require("parallel")
 
 PARAM <- list()
 # reemplazar por las propias semillas
-PARAM$semillas <- c(102191, 200177, 410551, 552581, 892237)
+PARAM$semillas <- c(108961, 108967, 108971, 108991, 109001)
 
 #------------------------------------------------------------------------------
 # particionar agrega una columna llamada fold a un dataset que consiste
@@ -54,8 +54,8 @@ ArbolEstimarGanancia <- function(semilla, param_basicos) {
   # calculo la ganancia en testing  qu es fold==2
   ganancia_test <- dataset[
     fold == 2,
-    sum(ifelse(prediccion[, "BAJA+2"] > 0.025,
-      ifelse(clase_ternaria == "BAJA+2", 273000, -7000),
+    sum(ifelse(prediccion[, "baja t+2"] > 0.025,
+      ifelse(clase_ternaria == "baja t+2", 273000, -7000),
       0
     ))
   ]
@@ -65,11 +65,11 @@ ArbolEstimarGanancia <- function(semilla, param_basicos) {
 
   return(list(
     "testing" = dataset[fold == 2, .N],
-    "testing_pos" = dataset[fold == 2 & clase_ternaria == "BAJA+2", .N],
-    "envios" = dataset[fold == 2, sum(prediccion[, "BAJA+2"] > 0.025)],
+    "testing_pos" = dataset[fold == 2 & clase_ternaria == "baja t+2", .N],
+    "envios" = dataset[fold == 2, sum(prediccion[, "baja t+2"] > 0.025)],
     "aciertos" = dataset[
       fold == 2,
-      sum(prediccion[, "BAJA+2"] > 0.025 & clase_ternaria == "BAJA+2")
+      sum(prediccion[, "baja t+2"] > 0.025 & clase_ternaria == "baja t+2")
     ],
     "ganancia_test" = ganancia_test_normalizada
   ))
@@ -78,20 +78,20 @@ ArbolEstimarGanancia <- function(semilla, param_basicos) {
 #------------------------------------------------------------------------------
 
 # Aqui se debe poner la carpeta de la computadora local
-setwd("X:\\gdrive\\uba2023\\") # Establezco el Working Directory
+setwd("C:\\Users\\Digodat\\OneDrive - Económicas - UBA\\Documentos\\Maestría Exactas\\EyF")
 
 # cargo los datos
-dataset <- fread("./datasets/competencia_01.csv")
+dataset <- fread("./datasets/competencia_01_new.csv")
 
 # trabajo solo con los datos con clase, es decir 202103
 dataset <- dataset[foto_mes==202103]
 
 
 param_basicos <- list(
-  "cp" = -1, # complejidad minima
-  "minsplit" = 900, # minima cant de registros en un nodo para hacer el split
-  "minbucket" = 440, # minima cantidad de registros en una hoja
-  "maxdepth" = 5
+  "cp" = -1, # complejidad minima. Qué tan parecidos son los hijos al padre.
+  "minsplit" = 500, # minima cant de registros en un nodo para hacer el split
+  "minbucket" = 50, # minima cantidad de registros en una hoja
+  "maxdepth" = 6
 ) # profundidad máxima del arbol
 
 # Un solo llamado, con la semilla 17
@@ -123,3 +123,4 @@ tb_salida[, mean(ganancia_test)]
 tb_salida[, lapply(.SD, mean)]
 
 # desvio estandar Distribucion Binomial   sqrt( n * p * (1-p) )
+
