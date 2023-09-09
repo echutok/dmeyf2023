@@ -13,7 +13,7 @@ require("rpart.plot")
 setwd("C:\\Users\\Digodat\\OneDrive - Económicas - UBA\\Documentos\\Maestría Exactas\\EyF")
 
 # cargo el dataset
-dataset <- fread("./datasets/competencia_01_new.csv")
+dataset <- fread("./datasets/data_cleaned_04.csv")
 
 # chequeamos
 dataset[, .(Count = .N), by = clase_ternaria]
@@ -28,10 +28,10 @@ modelo <- rpart(
         formula = "clase_ternaria ~ .",
         data = dtrain, # los datos donde voy a entrenar
         xval = 0,
-        cp = -1, # esto significa no limitar la complejidad de los splits
-        minsplit = 500, # minima cantidad de registros para que se haga el split
-        minbucket = 50, # tamaño minimo de una hoja
-        maxdepth = 6
+        cp = -0.5, # esto significa no limitar la complejidad de los splits
+        minsplit = 400, # minima cantidad de registros para que se haga el split. Cuanto más chico, más overfitting
+        minbucket = 400, # tamaño minimo de una hoja. Cuanto más chico, más overfitting.
+        maxdepth = 6 # profundidad. Cuanto más grande, más overfitting.
 ) # profundidad maxima del arbol
 
 
@@ -67,7 +67,8 @@ dir.create("./exp/KA2001")
 
 # solo los campos para Kaggle
 fwrite(dapply[, list(numero_de_cliente, Predicted)],
-        file = "./exp/KA2001/K101_009.csv",
+        file = "./exp/KA2001/K101_34.csv",
         sep = ","
 )
+
 

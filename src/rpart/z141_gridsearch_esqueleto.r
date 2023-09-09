@@ -1,19 +1,22 @@
-### PRUEBA PRUEBA PRUEBA
-
 # esqueleto de grid search
 # se espera que los alumnos completen lo que falta
-#   para recorrer TODOS cuatro los hiperparametros
+# para recorrer TODOS cuatro los hiperparametros
 
 rm(list = ls()) # Borro todos los objetos
 gc() # Garbage Collection
 
+total_iterations <- 1000
+pb <- progress_bar$new(total = total_iterations)
+
+
+library(progress)
 require("data.table")
 require("rpart")
 require("parallel")
 
 PARAM <- list()
 # reemplazar por las propias semillas
-PARAM$semillas <- c(102191, 200177, 410551, 552581, 892237)
+PARAM$semillas <- c(108961, 108967, 108971, 108991, 109001)
 
 #------------------------------------------------------------------------------
 # particionar agrega una columna llamada fold a un dataset
@@ -60,8 +63,8 @@ ArbolEstimarGanancia <- function(semilla, param_basicos) {
   # calculo la ganancia en testing  qu es fold==2
   ganancia_test <- dataset[
     fold == 2,
-    sum(ifelse(prediccion[, "BAJA+2"] > 0.025,
-      ifelse(clase_ternaria == "BAJA+2", 273000, -7000),
+    sum(ifelse(prediccion[, "baja t+2"] > 0.025,
+      ifelse(clase_ternaria == "baja t+2", 273000, -7000),
       0
     ))
   ]
@@ -91,21 +94,21 @@ ArbolesMontecarlo <- function(semillas, param_basicos) {
 #------------------------------------------------------------------------------
 
 # Aqui se debe poner la carpeta de la computadora local
-setwd("~/buckets/b1/") # Establezco el Working Directory
+setwd("C:\\Users\\Digodat\\OneDrive - Económicas - UBA\\Documentos\\Maestría Exactas\\EyF") # Establezco el Working Directory
 # cargo los datos
 
 # cargo los datos
-dataset <- fread("./datasets/dataset_pequeno.csv")
+dataset <- fread("./datasets/data_cleaned.csv")
 
 # trabajo solo con los datos con clase, es decir 202107
-dataset <- dataset[clase_ternaria != ""]
+dataset <- dataset[foto_mes==202103]
 
 # genero el archivo para Kaggle
 # creo la carpeta donde va el experimento
 # HT  representa  Hiperparameter Tuning
 dir.create("./exp/", showWarnings = FALSE)
 dir.create("./exp/HT2020/", showWarnings = FALSE)
-archivo_salida <- "./exp/HT2020/gridsearch.txt"
+archivo_salida <- "./exp/HT2020/gridsearch_03.txt"
 
 # Escribo los titulos al archivo donde van a quedar los resultados
 # atencion que si ya existe el archivo, esta instruccion LO SOBREESCRIBE,
@@ -116,26 +119,35 @@ cat(
   sep = "",
   "max_depth", "\t",
   "min_split", "\t",
+  "min_bucket", "\t",
   "ganancia_promedio", "\n"
 )
 
 
+
+total_combinations <- length(c(4, 5, 6, 7, 8)) * 
+  length(c(600, 400, 200, 100, 50, 10)) * 
+  length(c(10, 100, 150, 200, 300, 350, 400))
+
+pb <- progress_bar$new(total = total_combinations)
+
+
 # itero por los loops anidados para cada hiperparametro
 
-for (vmax_depth in c(4, 6, 8, 10, 12, 14)) {
-  for (vmin_split in c(1000, 800, 600, 400, 200, 100, 50, 20, 10)) {
-    # notar como se agrega
-
+for (vmax_depth in c(4, 5, 6, 7, 8)) {
+  for (vmin_split in c(600, 400, 200, 100, 50, 10)) {
+    for (vmin_bucket in c(10, 100, 150, 200, 300, 350, 400)) {
+    
     # vminsplit  minima cantidad de registros en un nodo para hacer el split
     param_basicos <- list(
       "cp" = -0.5, # complejidad minima
       "minsplit" = vmin_split,
-      "minbucket" = 5, # minima cantidad de registros en una hoja
-      "maxdepth" = vmax_depth
-    ) # profundidad máxima del arbol
+      "minbucket" = vmin_bucket, # minima cantidad de registros en una hoja
+      "maxdepth" = vmax_depth # profundidad máxima del arbol
+    ) 
 
     # Un solo llamado, con la semilla 17
-    ganancia_promedio <- ArbolesMontecarlo(ksemillas, param_basicos)
+    ganancia_promedio <- ArbolesMontecarlo(PARAM$semillas, param_basicos)
 
     # escribo los resultados al archivo de salida
     cat(
@@ -144,7 +156,11 @@ for (vmax_depth in c(4, 6, 8, 10, 12, 14)) {
       sep = "",
       vmax_depth, "\t",
       vmin_split, "\t",
+      vmin_bucket, "\t",
       ganancia_promedio, "\n"
     )
+    pb$tick() # Progress bar
   }
 }
+}
+
