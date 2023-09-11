@@ -4,3 +4,5 @@ Además de este archivo de instrucciones, la entrega consta de dos archivos:
 
 Los hiperparámetros fueron obtenidos luego de realizar Grid Search y hacer distintas pruebas. 
 También se realizó Optimización Bayesiana, aunque en este caso no se obtuvo mejor resultado que en Grid Search.
+
+Nota: por como creé el archivo originalmente, la clase ternaria BAJA+2 la creé como "baja t+2". 
