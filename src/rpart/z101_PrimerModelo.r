@@ -28,10 +28,10 @@ modelo <- rpart(
         formula = "clase_ternaria ~ .",
         data = dtrain, # los datos donde voy a entrenar
         xval = 0,
-        cp = -0.5, # esto significa no limitar la complejidad de los splits
-        minsplit = 400, # minima cantidad de registros para que se haga el split. Cuanto más chico, más overfitting
-        minbucket = 400, # tamaño minimo de una hoja. Cuanto más chico, más overfitting.
-        maxdepth = 6 # profundidad. Cuanto más grande, más overfitting.
+        cp = -0.48, # esto significa no limitar la complejidad de los splits
+        minsplit = 842, # minima cantidad de registros para que se haga el split. Cuanto más chico, más overfitting
+        minbucket = 419, # tamaño minimo de una hoja. Cuanto más chico, más overfitting.
+        maxdepth = 7 # profundidad. Cuanto más grande, más overfitting.
 ) # profundidad maxima del arbol
 
 
@@ -67,8 +67,28 @@ dir.create("./exp/KA2001")
 
 # solo los campos para Kaggle
 fwrite(dapply[, list(numero_de_cliente, Predicted)],
-        file = "./exp/KA2001/K101_34.csv",
+        file = "./exp/KA2001/K101_39.csv",
         sep = ","
 )
+
+
+
+
+
+# Extract the variable importances
+#variable_importance <- modelo$variable.importance
+
+# Sort the split variables by importance in descending order
+#sorted_split_variables <- names(variable_importance)[order(-variable_importance)]
+
+# Select the top 10 split variables
+#top_15_split_variables <- sorted_split_variables[1:15]
+
+# Create a vector of columns to keep
+#columns_to_keep <- c("foto_mes", "clase_ternaria","numero_de_cliente", top_15_split_variables)
+
+# Keep only the selected columns in your_data
+#dataset <- dataset[, ..columns_to_keep]
+
 
 

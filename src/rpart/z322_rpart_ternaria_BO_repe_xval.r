@@ -35,7 +35,7 @@ PARAM$semilla_azar <- c(
 PARAM$xval_folds <- 5
 
 # cantidad de iteraciones de la Optimizacion Bayesiana
-PARAM$BO_iter <- 300
+PARAM$BO_iter <- 100
 
 # la letra L al final de 1L significa ENTERO
 PARAM$hs <- makeParamSet(
@@ -204,10 +204,10 @@ EstimarGanancia <- function(x) {
 # Aqui empieza el programa
 
 # Establezco el Working Directory inicial
-setwd("/Users/Digodat/OneDrive - Económicas - UBA/Documentos/Maestría Exactas/EyF_backup/datasets/")
+setwd("/Users/Digodat/OneDrive - Económicas - UBA/Documentos/Maestría Exactas/EyF/datasets/")
 
 # cargo los datos
-dataset <- fread("./competencia_01_new.csv")
+dataset <- fread("./data_cleaned.csv")
 # entreno en 202103
 dataset <- dataset[foto_mes == 202103]
 
