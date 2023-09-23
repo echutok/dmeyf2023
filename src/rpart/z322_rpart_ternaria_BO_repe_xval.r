@@ -35,7 +35,7 @@ PARAM$semilla_azar <- c(
 PARAM$xval_folds <- 5
 
 # cantidad de iteraciones de la Optimizacion Bayesiana
-PARAM$BO_iter <- 100
+PARAM$BO_iter <- 300
 
 # la letra L al final de 1L significa ENTERO
 PARAM$hs <- makeParamSet(
@@ -49,7 +49,7 @@ PARAM$hs <- makeParamSet(
 
 
 # este valor debe ser 1 si se utiliza Windows
-PARAM$cores <- 1
+PARAM$cores <- 5
 
 #------------------------------------------------------------------------------
 # graba a un archivo los componentes de lista
@@ -128,12 +128,12 @@ ArbolSimple <- function(fold_test, data, param) {
   )
 
   # esta es la probabilidad de baja
-  prob_baja2 <- prediccion[, "baja t+2"]
+  prob_baja2 <- prediccion[, "BAJA+2"]
 
   # calculo la ganancia
   ganancia_testing <- data[fold == fold_test][
     prob_baja2 > 1 / 40,
-    sum(ifelse(clase_ternaria == "baja t+2",
+    sum(ifelse(clase_ternaria == "BAJA+2",
       273000, -7000
     ))
   ]
@@ -204,10 +204,10 @@ EstimarGanancia <- function(x) {
 # Aqui empieza el programa
 
 # Establezco el Working Directory inicial
-setwd("/Users/Digodat/OneDrive - Económicas - UBA/Documentos/Maestría Exactas/EyF/datasets/")
+setwd(PARAM$home)
 
 # cargo los datos
-dataset <- fread("./data_cleaned.csv")
+dataset <- fread("./datasets/competencia_01.csv")
 # entreno en 202103
 dataset <- dataset[foto_mes == 202103]
 
