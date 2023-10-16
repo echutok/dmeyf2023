@@ -1,0 +1,174 @@
+Hola Miranda y equipo.
+
+Antes que nada, me voy a presentar. Mi nombre es Ezequiel, soy Licenciado en Economía e ingresé como JR Data Scientist al área de BI dirigida por Michelina.
+Durante el último mes trabajé en el proyecto de retención proactiva de clientes. Este video es para mostrar algunos resultados que me parecieron relevantes 
+para compartir, y que podemos dividir en dos secciones:
+
+- Por un lado vamos a hablar de qué tipo de clientes se dan de baja y qué los caracteriza.
+- Y por otro lado, vamos a esbozar posibles soluciones que nos podría permitir anticipar algunas de estas bajas.
+
+Entonces, comenzamos con la descipción de estos grupos. PONER CUÁNTOS SON CADA UNO.
+
+- Cluster1: primero, identificamos que existe un grupo de clientes que se dan de baja que son de mayor edad, promedian los 60 años, que cobran su sueldo
+en el banco, y que nos otorgan mucha rentabilidad en relación al resto de los grupos. Vemos que utilizan mucho el banco: tienen tarjetas de crédito cuya 
+cantidad de transacciones y monto superan por mucho al resto de los grupos; realizan y reciben transferencias; registran muchas transacciones; y tienen 
+débitos automáticos. Entendemos que se trata de clientes con cierto grado de fidelidad, ya que tampoco realiza transacciones en cajeros de otros bancos. 
+Podríamos pensar que es un grupo de clientes fieles, conservadores, probablemente sean cabezas de familia.
+Si es por encontrar alguna imagen icónica y descriptiva de ellos, diría que me hace acordar a la familia Flunders.
+Consejo: evitar a toda costa que se den de baja. Podríamos bajarles la tasa de financiación de las tarjetas.
+
+- Cluster2: luego encontramos un grupo de clientes que no reciben haberes con nosotros; generan rentabilidad baja; y no utilizan mucho el banco: tienen poco 
+dinero en caja de ahorro; no tienen tarjetas de crédito ni debitos automaticos; no reciben ni hacen transferencias; no tienen seguros; no transaccionan con 
+debito; muestran muy poca actividad en home banking y en cajeros automáticos, e incluso no tienen la APP. 
+Eso sí, vemos que pueden tener un préstamo personal.
+Podríamos decir que es un grupo de clientes que tiene cuenta con nosotros por las dudas, por si hay alguna promoción que le sirve, pero que probablemente 
+tengan otro banco principal y muchos más bancos secundarios. Son clientes que no se sabe a qué banco le pertenecen de verdad.
+Si es por ponerles un nombre, a mi me hacen acordar a San Lorenzo. Se llama San Lorenzo de Almagro, pero tiene su estadio en Bajo Flores y se quieren mudar 
+a Boedo. No sabemos de dónde son. 
+Consejo: no son clientes tan importantes para el banco, podríamos prescindir de ellos, aunque no perdemos nada en intentar ofrecer tarjetas a un 
+costo promocionado.
+
+- Cluster3: el tercer grupo no se caracteriza por generar mucha o poca rentabilidad, sino por utilizar mucho los productos del banco: incluso no recibiendo 
+sus haberes con nosotros, tienen más productos que el resto de los clústers, usan débitos automáticos, realizan y reciben transferencias, se comunican 
+a menudo con el callcenter, suelen tener préstamos personales, y tienen y utilizan tarjetas de crédito. 
+Además, son clientes que entran comunmente en mora. 
+Diría que es un grupo de clientes con poco control de si mismos, compulsivos y consumistas.
+Consejo: no perderlos, bajarles las comisiones. 
+
+
+- Cluster4: este cluster es muy interesante. Son los clientes que más rentabilidad le generan al banco. Reciben el salario con nosotros, registran muchos 
+movimientos en cuentas, transaccionan con débito, mucha actividad en la APP y muchas transacciones en cajeros automáticos. Además, son los que más préstamos 
+personales tienen, tanto en monto como en cantidad. Al mismo tiempo, paradógicamente, no tienen tarjeta visa ni master. 
+Este conjunto de comportamientos me hace creer que son clientes super-activos, oportunistas, e infieles. Si bien perciben el salario con nosotros, tienen
+otras cuentas bancarias y mueven el dinero según les convenga. Sería un error dejar que estos clientes se den de baja.
+Nombre: traicioneros.
+Imagen: COBOS.
+Consejo: no perderlos, regalarle las tarjetas sin costo.
+
+- CLuster5: el quinto grupo está conformado por clientes que no cobran el sueldo con nosotros. Se caracterizan por tener muy poca actividad: en el último
+trimestre no realizaron transacciones, tienen muy poca plata en sus cajas de ahorro, no tiene débitos automáticos, reciben y hacen pocas transferencias,
+no tienen la APP, y tienen tarjetas de crédito y no las usan. Sin embargo, se destaca que tienen préstamos personales. 
+Al banco le generan muy poca rentabilidad. Se habrán abierto la cuenta por algún beneficio en específico que ya no está activo o está por vencerse, como
+un préstamo personal. Detectó el beneficio, llegó, y se está yendo. Como referencia podemos usar un buitre.
+Consejo: que se vayan. Generan poca rentabilidad y probablemente sean clientes que conocen los beneficios del banco, y aun así no utilizan los productos.
+
+- Cluster6: el sexto grupo que encontramos tampoco percibe el sueldo en el banco, ni se caracteriza por generar mucha o poca rentabilidad. Sí es de los
+grupos de clientes que más productos tienen. Tienen tarjetas pero no las usan, tiene debitos automaticos pero de bajo monto, realiza pocos movimientos,
+tienen algún préstamo personal pero de bajo monto, e incluso seguros de vida o de accidentes personales. 
+En resumen, son clientes con muchos producto pero poco engagement. Parece como si hubieran sido bien adquiridos pero está siendo difícil retenerlos.
+Sin embargo, al tener muchos productos, es más fácil encontrar forma de seducirlos. 
+Digamos que son clientes manipulables.
+Consejo: mantenerlos. Bajarles las comisiones, llevarlos a su límite de consumo.
+
+- Cluster7: del último grupo podemos decir que son clientes que reciben el salario en el banco, y por los montos que se ven, aparenta ser una población de 
+ingresos medios. Es de los grupos que más dinero tienen en sus cajas de ahorro en pesos, y el que más tiene en sus cajas de ahorro en dólares.
+Tienen tarjetas y no las usan. Realizaron muy pocas transacciones en el último trimestre. Tienen la APP, pero la usan poco. Es de los clientes que 
+menos rentabilidad generan.
+Son clientes del banco sólo por percibir el sueldo ahí. No les gusta comprar, no realizan transacciones, diría que son hippies con OSDE.
+Consejo: siempre es bueno retener estos clientes. Se les puede ofrecer la venta de seguros al viajero. 
+
+
+Ahora bien, dicho esto, todos ellos se dieron de baja. Si lo hicieron, es por algo.
+Si bien es cierto que un cliente efectivamente se da de baja de un día para el otro, ya que basta con hacer un trámite en el banco o incluso un llamado 
+terminal, todos sabemos que en realidad las personas, en los meses previos a darse de baja, van dando algunos indicios de comportamientos espciales. 
+Teniendo en cuenta esto, nos enfocamos en poder identificar cuáles son estas señales y comportamientos que nos permiten anticipar las bajas, y en el 
+mejor de los casos impedirlas.
+
+Detectamos que para los meses previos a las bajas, hay patrones comunes a todos los clusters. 
+Diferenciar por percentil: variables con menos variabilidad, se ve la diferencia en los percentiles más altos (caja de ahorro en USD, seguro de vida).
+Veamos algunos:
+
+- Cantidad de transacciones: si evaluamos la cantidad de transacciones en los meses previos a la baja, vemos un descenso muy claro. Este gráfico indica,
+para cada período, la mediana de la cantidad de transacciones hechas en los últimos tres meses, en este caso el cluster 1. 
+- Monto en caja de ahorro: mediana del monto en la caja de ahorro, en los meses previos a la baja, en este caso el cluster 4, ajustado por inflación.
+- Monto en caja de ahorro en USD: percentil 80 del monto en caja de ahorro en USD.
+
+Tableros de control por parte de nuestros analistas, establecer sistemas de alerta automatizadas que detecten caídas porcentuales importantes en 
+variables sensibles.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cluster 1: clientes de mayor edad y más antiguos, que le otorgan al banco mucha rentabilidad, sea por comisiones altas o por el dinero que el cliente tiene
+en el banco. Tienen más débitos automáticos que el resto y de mayor monto. Realizan muchas transacciones. Tienen algún seguro, reciben salario en el banco. 
+Se comunican y realizaron alguna transacción con el callcenter; van al banco a hacer consultas, realiza más transacciones en ATMs que el resto. No realiza 
+tantas transaccioens en ATMs de otros bancos (fidelidad?), mucho movimiento en cuentas, pueden llegar a ser morosos. Cluster con el que más dinero se 
+gana por inversiones del cliente. 
+ACTIVOS, FIDELIDAD, CABEZA DE FAMILIA, BANCO-DEPENDIENTE, CONSEVADORES. CLIENTES QUE NO HAY QUE PERDER.
+Nombre: familia mainstream.
+Imagen: familia Flunders.
+
+Cluster 2: tienen algo de antiguedad, pero generan baja rentabilidad, poco dinero en caja de ahorro, casi nada en caja de ahorro en USD, no transacciona 
+con debito, no tiene tarjeta visa ni master, no tienen debitos automaticos, no reciben transferencias ni hacen transferencias, 
+poca actividad en home banking, no hace transacciones en ATMs, poco movimiento en cuentas, no tiene la APP. Puede tener algun préstamo personal.
+EX-CLIENTE ACTIVOS? TIENEN EL BANCO POR LAS DUDAS; NO GENERAN DINERO, PROBABLEMENTE TENGAN OTRO BANCO; NO SE CONOCE MUCHO DE ELLOS;
+QUIZÁ SON PERSONAS QUE PODRÍAN GENERAR RENTABILIDAD SI FUERA EL BANCO PRINCIPAL.
+Nombre: los sin barrio. 
+Imagen: SAN LORENZO.
+
+Cluster 3: rentabilidad media, uso medio de la tarjeta de débito, tiene tarjeta visa y master pero la usa poco. Tienen productos. Tienen prestamos personales 
+de monto medio. Puede tener algún seguro. No percibe salario en el banco. Tiene débitos automáticos. Realiza y recibe algunas transferencias. Realizó 
+transacciones con callcenter, va al banco a hacer consultas, MOROSOS en mastercard, MOROSOS en Visa (hace más tiempo).
+Nombre: timberos. 
+Imagen: DI CAPRIO EN LOBO DE WALL STREET.
+
+Cluster 4: generan alta rentabilidad, nulas transacciones visa, pocas tarjetas master, no cobran comisiones de mantenimiento, bajo limite de 
+financiacion Master, bajo limite de compra master, mucha transaccion con debito, no tiene tarjeta visa ni master, tienen prestamos personales de alto monto, 
+recibe salario en el banco, salarios altos, tiene más debitos automaticos, va al banco a hacer consultas, realiza más transacciones en ATMs que el resto,
+realiza más transaccioens en ATMs de otros bancos que el resto (infidelidad?), mucho movimiento en cuentas, mucha actividad en la APP, cluster con el que 
+más dinero se gana por intereses. 
+SUPER ACTIVOS, INFIDELIDAD, OPORTUNISTAS. Quizá se les puede enchufar las tarjetas, que no tienen... Reciben el salario, usan productos del banco 
+cuando les conviene, pero no usan tarjetas. 
+Nombre: traicioneros.
+Imagen: COBOS.
+
+Cluster 5: en el último trimestre no realizó transacciones, cluster que menos rentabilidad genera al banco, poco en caja de ahorro, cobran comisiones 
+de mantenimiento, no tienen home banking, no cobra el sueldo, no ahorra en USD, no transacciona con debito, tiene tarjeta visa y master y no las usa, 
+no tiene debitos automaticos, recibe muy pocas transferencias y no hace transferencias, poca actividad en home banking, poco movimiento en cuentas, 
+no tiene la APP, no hace transacciones en ATMs. Poca antiguedad, puede tener un préstamo personal, pero de los más bajos. 
+POR LAS DUDAS. SUPER OPORTUNISTAS. TIENEN LAS TARJETAS Y NI LAS USARON, SÓLO QUIEREN EL PRÉSTAMO.
+El cliente ni usa el banco, y se le cobra comisiones. Lógicamente se va a dar de baja. Se habrán abierto la cuenta por algun beneficio en específico que
+ya no está activo o está por vencerse (préstamo). Interesante comparar con cluster 2.
+Nombre: buitres.
+Imagen: GRIESA.
+
+Cluster 6: no percibe sueldo en el banco. No se garantiza por generar ni mucha ni poca rentabilidad. De los clientes que más productos tienen. 
+Poco en caja de ahorro. Usan la tarjeta que tienen, pero poco. Tiene debitos automaticos. De los que menos movimientos realizan. Tiene la APP pero la usan 
+poco. Si tienen home banking, lo usan poco. Tiene tarjeta visa y la usa muy poco; tiene tarjeta master y no la usa. Puede tener algun prestamo personal, 
+pero de bajo monto. Puede tener seguro de vida y de accidentes personales. 
+MUCHOS PRODUCTOS, PERO POCO ENGAGEMENT. NO ES BANCO PRINCIPAL. SE LOS ADQUIRIÓ BIEN, PERO ESTÁ SIENDO DIFÍCIL RETERNERLOS. INTUITIVAMENTE SE DARÁN DE BAJA.
+Nombre: clientes manipulables.
+Imagen: manipulador títere.
+
+Cluster 7: recibe salario en el banco, cluster de ingresos medios. De los que menos rentabilidad generan. Tienen productos. Junto con Cluster1, son los que 
+mayor monto tienen en caja de ahorro. Tienen caja de ahorro en USD. Tiene tarjeta visa y no la usa, tiene tarjeta master y no la usa. No realizaron tantas 
+transacciones en el último trimestre. Puede tener préstamo personal, pero de muy bajo monto. Tiene la APP, la usa un poco. 
+SON CLIENTES DEL BANCO SOLO POR PERCIBIR SUELDO AHI. NO LES GUSTA COMPRAR; NO REALIZAN TRANSACCIONES. 
+Nombre: hippie con OSDE.
+Imagen: un hippie con OSDE.
+
+
+
+
+
+
+
